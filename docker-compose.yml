@@ -1,0 +1,23 @@
+musicbrainz:
+  image: sparklyballs/musicbrainz
+  ports:
+    - "5000:5000"
+  volumes:
+    - ./data/musicbrainz/config:/config
+    - ./data/musicbrainz/data:/data
+  environment:
+    - "BRAINZCODE=0tKnbV9XVWaTEF2u7xBS10uOZO8w8cWscF9cS3wJ"
+    - "PGID=1000"
+    - "PUID=1000"
+
+subsonic:
+  build: build/subsonic/.
+  ports:
+    - "4040:4040"
+  volumes:
+    - ./data/subsonic/config:/var/subsonic
+    - /home/media/Music:/Music:ro
+  environment:
+    - "PGID=1000"
+    - "PUID=1000"
+
